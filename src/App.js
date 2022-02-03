@@ -1,21 +1,25 @@
 import './App.css';
+
 import Login from './components/Login'
-import useToken from './components/useToken';
+import ListTrails from './components/ListTrails';
+
+import useToken from './hooks/useToken';
 
 function App() {
-  const { token, saveToken } = useToken();
+  const { token, setToken } = useToken();
 
   if(!token) {
     return(
       <div>
-        <Login setToken={saveToken} />
+        <Login setToken={setToken} />
       </div>
     )
   }
 
   return (
       <div className="App">
-        <h2>Logged in!</h2>
+        <b>You are logged in!</b>
+        <ListTrails token={token} />
       </div>
   );
 }

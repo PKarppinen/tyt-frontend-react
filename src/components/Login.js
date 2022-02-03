@@ -12,17 +12,13 @@ async function loginUser(creds, setToken) {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: credentials,
-        redirect: 'follow'
+        redirect: 'follow',
+        credentials: 'include'
     }).then(function (response) {
         console.log("Authenticated");
         var token = window.btoa(creds.username + ':' + creds.password);
         console.log("Got token: " + token);
         setToken(token);
-
-        // $http.defaults.headers.common['Authorization']
-        //   = 'Basic ' + token;
-        // $location.path('/list-all-trails');
-      
     }).catch(error => {
         console.error("Authentication error: " + error);
         alert("Authentication failed.")
