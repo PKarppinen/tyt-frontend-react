@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Button, Form } from 'react-bootstrap';
 
 async function loginUser(creds, setToken) {
     var credentials = "username=" + creds.username + "&password=" + creds.password;            
@@ -40,18 +41,20 @@ export default function Login({ setToken }) {
     return (    
         <div className="login-wrapper">
             <h1>Please Log In</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    <p>Username</p>
-                    <input type="text" onChange={e => setUserName(e.target.value)} />
-                </label>
-                <label>
-                    <p>Password</p>
-                    <input type="password" onChange={e => setPassword(e.target.value)} />
-                </label>
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
+            <form onSubmit={handleSubmit} className="login-form">
+                <Form.Group className="mb-3">
+                    <Form.Label>
+                        <p>Username</p>
+                        <Form.Control type="text" onChange={e => setUserName(e.target.value)} />
+                    </Form.Label>
+                    <Form.Label>
+                        <p>Password</p>
+                        <Form.Control type="password" onChange={e => setPassword(e.target.value)} />
+                    </Form.Label>
+                    <div>
+                        <Button variant="primary" type="submit" className="login-button">Submit</Button>
+                    </div>
+                </Form.Group>
             </form>
         </div>
     )

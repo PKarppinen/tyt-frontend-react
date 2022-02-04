@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
 export default function useToken() {
-  const getToken = () => {
+  const getSessionToken = () => {
     return sessionStorage.getItem('authData');  
   };
 
-  const [token, setToken] = useState(getToken());
+  const [token, setToken] = useState(getSessionToken());
 
   const saveToken = userToken => {
     sessionStorage.setItem('authData', userToken);
@@ -13,7 +13,7 @@ export default function useToken() {
   };
 
   return {
-    token,
-    setToken: saveToken
+    getToken: getSessionToken,
+    setToken: saveToken    
   }
 }

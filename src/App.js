@@ -1,4 +1,5 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Login from './components/Login'
 import ListTrails from './components/ListTrails';
@@ -6,9 +7,9 @@ import ListTrails from './components/ListTrails';
 import useToken from './hooks/useToken';
 
 function App() {
-  const { token, setToken } = useToken();
+  const { getToken, setToken } = useToken();
 
-  if(!token) {
+  if(!getToken()) {
     return(
       <div>
         <Login setToken={setToken} />
@@ -18,8 +19,7 @@ function App() {
 
   return (
       <div className="App">
-        <b>You are logged in!</b>
-        <ListTrails token={token} />
+        <ListTrails getToken={getToken} />
       </div>
   );
 }

@@ -1,32 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Trails from './Trails';
 
-export default function ListTrails({ token }) {
-    const [trails, setTrails] = useState();
-    const [isLoading, setLoading] = useState(true);
-    
-    const fetchTrails = () => fetch(`https://localhost:8443/api/trails/`, {
-                        method: 'GET',
-                        credentials: 'omit',
-                        headers: {
-                            'Authorization': 'Basic ' + token
-                        }
-                    }).then(data => {
-                        data.json().then(function(result) {
-                            setTrails(result);
-                            setLoading(false);
-                        });
-                    }).catch((error) => {
-                        setLoading(false);
-                        console.error("Failed to get trails: " + error);
-                    });
+import useTrails from '../hooks/useTrails';
+
+export default function ListTrails({ getToken }) {
+    const { getTrails, setTrails, getLoading, setLoading } = useTrails(getToken);
 
     useEffect(() => {
-        fetchTrails();
+        setTrails();
     }, []);
 
-    if (!isLoading) {     
-        return <Trails trails={trails} />
+    if (!getLoading()) {
+        return <Trails props={{trails: getTrails(), getToken: getToken}} />
     } else {
         return <b>Loading trails!</b>
     }
