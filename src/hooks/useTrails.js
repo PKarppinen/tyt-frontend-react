@@ -15,7 +15,7 @@ export default function useTrails(getToken) {
         data.json().then(function(result) {
             setTrails(result);
             setLoading(false);
-            console.log("Set trails to state");
+            console.log("Fetched trails from the server and setting them to state");
         });
     }).catch((error) => {
         setLoading(false);

@@ -12,9 +12,6 @@
   text-align: center;
 }
 
-.trails-container {
-}
-
 .trails-list {
   justify-content: center;
   display: flex;
@@ -23,4 +20,28 @@
 
 .trail-card {
   width: 40rem;
+}
+
+.card-title-container {
+  display: flex;
+}
+
+.card-title {
+  width: 100%;
+}
+
+.card-buttons {
+  display: flex;
+}
+
+.remove-button {
+  background: url(icons/remove2.PNG);
+  height: 34px;
+  width: 34px;
+}
+
+.edit-button {
+  background: url(icons/edit2.PNG);
+  height: 34px;
+  width: 34px;
 }
