@@ -54,7 +54,7 @@ export default function AddNewTrailCard({props}) {
                                 <Form.Control 
                                     type="text" 
                                     onChange={e => setTraiTitle(e.target.value)} 
-                                    required 
+                                    isInvalid={title != undefined && title == ''} 
                                     placeholder="Title of the trail" />
                                 <Form.Control.Feedback type="invalid">Trail title is required!</Form.Control.Feedback>
                             </InputGroup>
@@ -68,10 +68,10 @@ export default function AddNewTrailCard({props}) {
                                     <Form.Control 
                                         as="textarea" 
                                         rows={13}  
-                                        onChange={e => setTrailIframe(e.target.value)} 
-                                        required
+                                        onChange={e => setTrailIframe(e.target.value)}                                         
+                                        isInvalid={iframe != undefined && !String(iframe).startsWith("<iframe src=")}
                                         placeholder="Full iframe element. Element has to start with: '<iframe src=&quot;https://www.google.com/maps/embed\?' which will be followed by the parameters of your route. The element has to end with '></iframe>'. You can get full iframe element desctiption from Google maps."/>
-                                    <Form.Control.Feedback type="invalid">Trail iframe is required!</Form.Control.Feedback>
+                                    <Form.Control.Feedback type="invalid">Trail iframe is empty or in wrong format!</Form.Control.Feedback>
                                 </InputGroup>
                             </Form.Group>
                         </Row>
